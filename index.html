@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #money {
+            width: 300px;
+            height: 50px;
+            font-size: 50px;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div id="money"></div>
+</div>
+<script>
+    let money = document.getElementById("money");
+
+    let startTime = new Date();
+    startTime.setHours(8);
+    startTime.setMinutes(40);
+    startTime.setSeconds(0);
+    startTime.setMilliseconds(0);
+
+    let priceInMillis = 135 / 7 / 60 / 60 / 1000;
+
+    setInterval(animation, 80);
+
+    function animation() {
+        let endTime = new Date();
+        let timeLength = endTime - startTime;
+        if (endTime.getHours() >= 11 && endTime.getMinutes() <= 40
+            && endTime.getHours() <= 13 && endTime.getMinutes() <= 30) {
+            endTime.setHours(11);
+            endTime.setMinutes(40);
+            endTime.setSeconds(0);
+            endTime.setMilliseconds(0);
+        } else if (endTime.getHours() >= 13 && endTime.getMinutes() >= 30) {
+            timeLength -= (50 + 60) * 60 * 1000;
+        }
+        money.innerText = (timeLength * priceInMillis).toFixed(3);
+    }
+</script>
+</body>
+</html>
